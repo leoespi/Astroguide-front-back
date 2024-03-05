@@ -1,0 +1,16 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<h1><span class="badge bg-secondary">Menu AstroGuide</span></h1>
+
+<nav>
+    
+<a href="/inicio/body" *ngIf="clave !=null">Home</a> 
+<a href="/quiz/index" *ngIf="clave !=null">Listar Quiz</a> 
+<a href="/quiz/create" *ngIf="clave !=null">Crear Quiz</a> 
+<a href="/users/index" *ngIf="clave !=null">Listar Usuarios</a>
+<a href="/logros/index" *ngIf="clave !=null">Listar logros</a> 
+<a href="/logros/create" *ngIf="clave !=null"   >Crear logros</a>  
+<a href="/lecciones/index" *ngIf="clave !=null">Listar lecciones</a> 
+<a href="/lecciones/create" *ngIf="clave !=null"   >Crear lecciones</a>  
+<button *ngIf="clave != null" class="btn btn-outline-danger" (click)="logout()">Cerrar Sesión</button>
+
+</nav>

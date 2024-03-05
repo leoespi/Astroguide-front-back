@@ -1,0 +1,196 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form [formGroup]="quizForm"(ngSubmit)="agregarFicha()" action="" class="quiz-ficha example-form">
+        <div>
+            <title>Crear Quiz</title>
+            <h1>Titulo:</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="titulo" matInput type="text" name="titulo">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div>
+            <h1>Duracion</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="duracion" matInput type="number" name="duracion">
+                
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div>
+            <h1>Pregunta</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="pregunta" matInput type="text" name="pregunta">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div>
+            <h1>Respuesta 1</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="respuesta 1" matInput type="text" name="respuesta 1">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div>
+            <h1>Respuesta 2</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="respuesta 2" matInput type="text" name="respuesta 2">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div>
+            <h1>Respuesta 3</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="respuesta 3" matInput type="text" name="respuesta 3">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div>
+            <h1>Respuesta 4</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="respuesta 4" matInput type="text" name="respuesta 4">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary">Crear</button>
+
+    </form>
+    
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="scroll-container">
+    <form [formGroup]="quizForm" (ngSubmit)="agregarFicha()" action="" class="quiz-ficha example-form">
+        <div class="form-group">
+            <label for="titulo">Titulo:</label>
+            <input formControlName="titulo" matInput type="text" class="form-control" id="titulo" name="titulo">
+        </div>
+        <div class="form-group">
+            <label for="duracion">Duracion:</label>
+            <input formControlName="duracion" matInput type="number" class="form-control" id="duracion" name="duracion">
+        </div>
+        <div class="form-group">
+            <label for="pregunta">Pregunta:</label>
+            <input formControlName="pregunta" matInput type="text" class="form-control" id="pregunta" name="pregunta">
+        </div>
+        <div class="form-group">
+            <label for="respuestaCorrecta">RespuestaCorrecta:</label>
+            <input formControlName="respuestaCorrecta" matInput type="text" class="form-control" id="respuestaCorrecta" name="respuestaCorrecta">
+        </div>
+        <div class="form-group">
+            <label for="respuesta2">Respuesta 2:</label>
+            <input formControlName="respuesta2" matInput type="text" class="form-control" id="respuesta2" name="respuesta2">
+        </div>
+        <div class="form-group">
+            <label for="respuesta3">Respuesta 3:</label>
+            <input formControlName="respuesta3" matInput type="text" class="form-control" id="respuesta3" name="respuesta3">
+        </div>
+        <div class="form-group">
+            <label for="respuesta4">Respuesta 4:</label>
+            <input formControlName="respuesta4" matInput type="text" class="form-control" id="respuesta4" name="respuesta4">
+        </div>
+
+
+        <div class="form-group">
+            <label for="pregunta2">Pregunta2:</label>
+            <input formControlName="pregunta2" matInput type="text" class="form-control" id="pregunta2" name="pregunta2">
+        </div>
+
+        <div class="form-group">
+            <label for="respuestaCorrecta2">RespuestaCorrecta2:</label>
+            <input formControlName="respuestaCorrecta2" matInput type="text" class="form-control" id="respuestaCorrecta2" name="respuestaCorrecta2">
+        </div>
+
+        <div class="form-group">
+            <label for="respuesta5">Respuesta 5:</label>
+            <input formControlName="respuesta5" matInput type="text" class="form-control" id="respuesta5" name="respuesta5">
+        </div>
+        <div class="form-group">
+            <label for="respuesta6">Respuesta 6:</label>
+            <input formControlName="respuesta6" matInput type="text" class="form-control" id="respuesta6" name="respuesta6">
+        </div>
+        <div class="form-group">
+            <label for="respuesta7">Respuesta 7:</label>
+            <input formControlName="respuesta7" matInput type="text" class="form-control" id="respuesta7" name="respuesta7">
+        </div>
+
+
+        
+        <div class="form-group">
+            <label for="pregunta3">Pregunta3:</label>
+            <input formControlName="pregunta3" matInput type="text" class="form-control" id="pregunta3" name="pregunta3">
+        </div>
+
+        <div class="form-group">
+            <label for="respuestaCorrecta3">RespuestaCorrecta3:</label>
+            <input formControlName="respuestaCorrecta3" matInput type="text" class="form-control" id="respuestaCorrecta3" name="respuestaCorrecta3">
+        </div>
+
+        <div class="form-group">
+            <label for="respuesta8">Respuesta 8:</label>
+            <input formControlName="respuesta8" matInput type="text" class="form-control" id="respuesta8" name="respuesta8">
+        </div>
+        <div class="form-group">
+            <label for="respuesta9">Respuesta 9:</label>
+            <input formControlName="respuesta9" matInput type="text" class="form-control" id="respuesta9" name="respuesta9">
+        </div>
+        <div class="form-group">
+            <label for="respuesta10">Respuesta 10:</label>
+            <input formControlName="respuesta10" matInput type="text" class="form-control" id="respuesta10" name="respuesta10">
+        </div>
+
+        <div class="form-group">
+            <label for="logro_id">Logro ID:</label>
+            <select formControlName="logro_id" matNativeControl id="logro_id" name="logro_id">
+                <option *ngFor="let logro of logros" [value]="logro.id">{{ logro.id }} - {{ logro.Nombre_del_Logro }}</option>
+            </select>
+        </div>
+        
+
+
+
+
+
+
+
+        
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+</div>
+    
+</body>
+</html>

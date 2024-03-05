@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form [formGroup]="usersForm"(ngSubmit)="agregarUsers()" action="" class="form-ficha example-form">
+        <div>
+            <title>Crear Usuario </title>
+            <h1>Nombres del Aprendiz</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="name" matInput type="text" name="name">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        
+        <div>
+            <h1>Email Aprendiz</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="email" matInput type="text" name="email">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div>
+            <h1>Contraseña</h1>
+            <mat-form-field class="example-form-field">
+                <input formControlName="password" matInput type="password" name="password">
+                <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        
+        <button mat-raised-button color="primary">Crear</button>
+
+    </form>
+    
+</body>
+
+</html>
