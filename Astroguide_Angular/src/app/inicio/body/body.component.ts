@@ -59,7 +59,10 @@ export class BodyComponent {
        
         if (this.respuesta != null) {
           GlobalComponent.respuesta = this.respuesta;
-          localStorage.setItem('clave', this.respuesta.acccess_token);
+          console.log(this.respuesta);
+
+          
+          localStorage.setItem('clave', rs.token);
           window.location.reload();
         }
       }, err => {

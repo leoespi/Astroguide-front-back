@@ -29,7 +29,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('quiz', QuizApiController::class);
+Route::apiResource('quiz', QuizApiController::class)->middleware('auth:api');
 Route::apiResource('lecciones', LeccionesApiController::class);
 Route::apiResource('user', UserApiController::class);
 Route::apiResource('rol', RolApiController::class);

@@ -16,25 +16,50 @@ export class QuizService {
     
     
 
-    addQuiz(quiz : Quiz):Observable<any>{
-      return this.http.post(this.url,quiz);
+    addQuiz(quiz : Quiz, access_token:any):Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.post(this.url,quiz, options );
     }
 
-    getQuiz():Observable<any>{
-      return this.http.get(this.url);
+    getQuiz(access_token:any):Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.get(this.url, options);
     }
     
-    updateQuiz(id:string, quiz :Quiz):Observable<any>{
-      return this.http.put(this.url+id,quiz);         
+    updateQuiz(id:string, quiz :Quiz, access_token:any):Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.put(this.url+id,quiz, options);         
     }
 
-    deleteQuiz(id:string):Observable<any>{
-      return this.http.delete(this.url+id);
+    deleteQuiz(id:string, access_token:any):Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.delete(this.url+id, access_token);
     }
 
 
-    getLogros(): Observable<any> {
-      return this.http.get(this.logrosUrl);
+    getLogros(access_token:any): Observable<any> {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.get(this.logrosUrl, options);
     }
 
 }

@@ -23,6 +23,7 @@ import { Logros } from '../../modelos/logros.model'; // Asegúrate de importar e
 })
 export class CreateComponent {
   value = '';
+  token: string | null = null;
 
   quizForm = this.fb.group({
     titulo: '',
@@ -56,12 +57,14 @@ export class CreateComponent {
     this.id = this.aRoute.snapshot.paramMap.get('id');
   }
   ngOnInit(): void {
+    this.recuperarToken();
     this.loadLogros(); // Llama a la función para cargar los logros al iniciar el componente
     this.verEditar();
+    
   }
 
   loadLogros(): void {
-    this.quizServicio.getLogros().subscribe(
+    this.quizServicio.getLogros(this.token).subscribe(
       logros => {
         this.logros = logros;
       },
@@ -71,10 +74,17 @@ export class CreateComponent {
     );
   }
 
+  recuperarToken(){
+    this.token = localStorage.getItem('clave');
+    if (this.token == null) {
+      this._router.navigate(['/']);
+    }
+  }
+
 
   verEditar(): void {
     if (this.id != null) {
-      this.quizServicio.getQuiz().subscribe(
+      this.quizServicio.getQuiz(this.token).subscribe(
         data => {
           this.quizForm.setValue({
             
@@ -139,7 +149,7 @@ export class CreateComponent {
     
 
     if (this.id != null) {
-      this.quizServicio.updateQuiz(this.id, quiz).subscribe(
+      this.quizServicio.updateQuiz(this.id, quiz, this.token).subscribe(
         data => {
           this._router.navigate(['/quiz/index']);
         },
@@ -150,7 +160,7 @@ export class CreateComponent {
       );
 
     } else {
-      this.quizServicio.addQuiz(quiz).subscribe(data => {
+      this.quizServicio.addQuiz(quiz, this.token).subscribe(data => {
         console.log(data);
         this._router.navigate(['/quiz/index']);
       },

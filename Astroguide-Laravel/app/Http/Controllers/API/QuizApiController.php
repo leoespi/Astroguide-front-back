@@ -54,6 +54,8 @@ class QuizApiController extends Controller
         $quizs->Respuesta9= $request->Respuesta9;
         $quizs->Respuesta10= $request->Respuesta10;
 
+        $quizs->logro_id = $request->logro_id;
+
         $quizs->save();
         return response()->json($quizs, 200);
         //return redirect()->route('quizs.index');

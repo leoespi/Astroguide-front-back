@@ -16,6 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class IndexComponent {
   id: string | null;
   listarQuiz: Quiz[]= [];
+  token: string | null = null;
 
   constructor (private QuizService: QuizService,private router: Router, private aRouter: ActivatedRoute) {
     
@@ -23,10 +24,12 @@ export class IndexComponent {
     }
 
   ngOnInit(): void {
+    this.recuperarToken();
+    
     this.cargaQuiz();
   }
   cargaQuiz(): void{
-    this.QuizService.getQuiz().subscribe(data=>{
+    this.QuizService.getQuiz(this.token).subscribe(data=>{
       console.log(data);
       
       this.listarQuiz = data;
@@ -36,8 +39,19 @@ export class IndexComponent {
     }
     )
   }
+
+
+  
+  recuperarToken(){
+    this.token = localStorage.getItem('clave');
+    if (this.token == null) {
+      this.router.navigate(['/']);
+    }
+  }
+
+
   eliminarQuiz(id:any): void {
-    this.QuizService.deleteQuiz(id).subscribe(data=>{
+    this.QuizService.deleteQuiz(id, this.token).subscribe(data=>{
       this.cargaQuiz();
     },
     error =>{
