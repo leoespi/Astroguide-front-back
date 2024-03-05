@@ -31,6 +31,7 @@ export class CreateComponent {
     			
   });
   id: string | null;
+  token: string | null = null;
 
   constructor(private fb: FormBuilder, private _router: Router, 
   private leccionesServicio: LeccionesService, private aRoute: ActivatedRoute) {
@@ -38,11 +39,20 @@ export class CreateComponent {
   }
 
   ngOnInit(): void {
+    this.recuperarToken();
     this.verEditar();
   }
+
+  recuperarToken(){
+    this.token = localStorage.getItem('clave');
+    if (this.token == null) {
+      this._router.navigate(['/']);
+    }
+  }
+
   verEditar(): void {
     if (this.id != null) {
-      this.leccionesServicio.getLecciones().subscribe(
+      this.leccionesServicio.getLecciones(this.token).subscribe(
         data => {
           
           this.leccionesForm.setValue({
@@ -67,7 +77,7 @@ export class CreateComponent {
     };
   
     if (this.id != null) {
-      this.leccionesServicio.updateLeccion(this.id, leccion).subscribe(
+      this.leccionesServicio.updateLeccion(this.id, leccion, this.token).subscribe(
         data => {
           this._router.navigate(['/lecciones/index']);
         },
@@ -77,7 +87,7 @@ export class CreateComponent {
         }
       );
     } else {
-      this.leccionesServicio.addLecciones(leccion).subscribe(
+      this.leccionesServicio.addLecciones(leccion, this.token).subscribe(
         data => {
           console.log(data);
           this._router.navigate(['/lecciones/index']);
