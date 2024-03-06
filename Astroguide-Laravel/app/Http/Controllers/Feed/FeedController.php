@@ -8,6 +8,8 @@ use App\Models\Comment;
 use App\Models\Feed;
 use App\Models\Like;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class FeedController extends Controller
 {

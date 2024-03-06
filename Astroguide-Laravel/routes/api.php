@@ -30,15 +30,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('quiz', QuizApiController::class)->middleware('auth:api');
-Route::apiResource('lecciones', LeccionesApiController::class)->middleware('auth:api');
+Route::apiResource('lecciones', LeccionesApiController::class);
 Route::apiResource('user', UserApiController::class);
 Route::apiResource('rol', RolApiController::class);
 Route::apiResource('logro', LogroApiController::class);
-Route::get('/feeds', [FeedController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/feed/store', [FeedController::class, 'store'])->middleware('auth:sanctum');
-Route::post('/feed/like/{feed_id}', [FeedController::class, 'likePost'])->middleware('auth:sanctum');
-Route::post('/feed/comment/{feed_id}', [FeedController::class, 'comment'])->middleware('auth:sanctum');
-Route::get('/feed/comments/{feed_id}', [FeedController::class, 'getComments'])->middleware('auth:sanctum');
+
+// Ruta para mostrar un logro específico
+Route::get('/logros/{id}', [LogroApiController::class, 'show'])->middleware('auth:api');
+
+Route::get('/quiz/admin', [QuizApiController::class, 'indexadmin']);
+
+
+
+Route::get('/feeds', [FeedController::class, 'index'])->middleware('auth:api');
+Route::post('/feed/store', [FeedController::class, 'store'])->middleware('auth:api');
+Route::post('/feed/like/{feed_id}', [FeedController::class, 'likePost'])->middleware('auth:api');
+Route::post('/feed/comment/{feed_id}', [FeedController::class, 'comment'])->middleware('auth:api');
+Route::get('/feed/comments/{feed_id}', [FeedController::class, 'getComments'])->middleware('auth:api');
 
 Route::get('/test', function () {
     return response([
@@ -49,5 +57,12 @@ Route::get('/test', function () {
 Route::post('register', [AuthenticationController::class, 'register']);
 Route::post('login', [AuthenticationController::class, 'login']);
 Route::post('quiz/validarTerminacion', [QuizApiController::class, 'validarTerminacion'])->middleware('auth:api');
+
 Route::get('/logroUser', [LogroApiController::class, 'mostrarLogrosUser'])->middleware('auth:api');
+
 Route::get('/get/user', [UserApiController::class, 'indexUser'])->middleware('auth:api');
+
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
