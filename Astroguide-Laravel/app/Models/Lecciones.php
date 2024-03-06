@@ -10,12 +10,11 @@ class Lecciones extends Model
     use HasFactory;
 
     protected $table = "lecciones";
+    public $timestamps = false;
 
     protected $fillable = [
         "Nombre_de_la_leccion",
         "Contenido",
-        "Lecciones_Diarias_realizadas",
-        "Lecciones_Totales_realizadas",
         "Tipo_de_leccion",
         
     ];
