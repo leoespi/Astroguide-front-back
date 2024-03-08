@@ -18,13 +18,16 @@
             <td>{{users.email}}</td>
             <td>{{users.password}}</td>
             
+
+            <td>
+                <button type="button" class="btn btn-success" (click)="editarUsers(users.id)">Editar</button>
+            </td>
+            <br>
             <td>
                <button type="button" class="btn btn-danger"(click)="eliminarUsers(users.id)">Eliminar</button>
             </td>
-            <br>
-             <td>
-               <button type="button" class="btn btn-success" (click)="editarUsers(users.id)">Editar</button>
-             </td>
+            
+             
        </tr>
     </tbody>
     

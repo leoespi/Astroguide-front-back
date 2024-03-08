@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UsersService } from '../../servicios/users.service';
 import { Users } from '../../modelos/users.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Quiz } from '../../modelos/quiz.model';
 
 @Component({
   selector: 'app-index',
@@ -15,18 +16,29 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class IndexComponent {
   id: string | null;
   listaUserss: Users[]=[];
+  token: string | null = null;
+
+
 
   constructor(private usersService: UsersService, private _router: Router, private aRouter: ActivatedRoute ) { 
     this.id=this.aRouter.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
+    
+
     this.cargaUsers();
   }
+
+
+
+  
   cargaUsers(): void{
-    this.usersService.getUserss( localStorage.getItem('acces_token')).subscribe(data=>{
-      this.listaUserss = data;
+    this.usersService.getUserss( this.token).subscribe(data=>{
+      
       console.log(data);
+      this.listaUserss = data;
+      
     },
     err =>{
       console.log(err);

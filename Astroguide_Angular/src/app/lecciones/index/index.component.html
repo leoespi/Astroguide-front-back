@@ -19,8 +19,9 @@
             <td>{{ leccion.contenido }}</td>
             <td>{{ leccion.Tipo_de_leccion }}</td>
             <td>
+                <button type="button" class="btn btn-success" (click)="editarLeccion(leccion.id)">Editar</button>
                <button type="button" class="btn btn-danger" (click)=" eliminarLeccion(leccion.id)">Eliminar</button>
-               <button type="button" class="btn btn-success" (click)="editarLeccion(leccion.id)">Editar</button>
+               
             </td>
         </tr>
     </tbody>

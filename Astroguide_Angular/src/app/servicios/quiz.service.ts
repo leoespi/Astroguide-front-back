@@ -49,7 +49,7 @@ export class QuizService {
         'Authorization': 'Bearer ' + access_token
       });
       const options = { headers: headers};
-      return this.http.delete(this.url+id, access_token);
+      return this.http.delete(this.url+id, options);
     }
 
 

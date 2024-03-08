@@ -24,8 +24,13 @@ export class UsersService {
       return this.http.post(this.url,users);
     }
 
-    getUsers(id:string):Observable<any>{
-      return this.http.get(this.url+id);
+    getUsers(id:string, access_token:any):Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.get(this.url,options);
     }
     
     updateUsers(id:string, users:Users):Observable<any>{
