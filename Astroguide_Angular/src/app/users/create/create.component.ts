@@ -23,6 +23,8 @@ import { UsersService } from '../../servicios/users.service';
 })
 export class CreateComponent {
   value = '';
+  token: string | null = null;
+
 
   usersForm = this.fb.group({
     
@@ -39,10 +41,20 @@ export class CreateComponent {
   }
   ngOnInit(): void {
     this.verEditar();
+    this.recuperarToken();
   }
+
+  recuperarToken(){
+    this.token = localStorage.getItem('clave');
+    if (this.token == null) {
+      this._router.navigate(['/']);
+    }
+  }
+
+
   verEditar(): void {
     if (this.id != null) {
-      this.usersService.getUsers(this.id).subscribe(
+      this.usersService.getUsers(this.token ).subscribe(
         data => {
           this.usersForm.setValue({
             

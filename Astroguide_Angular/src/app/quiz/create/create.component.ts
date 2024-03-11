@@ -53,7 +53,8 @@ export class CreateComponent {
 
   id: string | null;
 
-  constructor(private fb: FormBuilder, private _router: Router, private quizServicio: QuizService, private aRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private _router: Router, 
+    private quizServicio: QuizService, private aRoute: ActivatedRoute) {
     this.id = this.aRoute.snapshot.paramMap.get('id');
   }
   ngOnInit(): void {

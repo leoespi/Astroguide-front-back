@@ -10,7 +10,9 @@
 <a href="/logros/index" *ngIf="clave !=null">Listar logros</a> 
 <a href="/logros/create" *ngIf="clave !=null"   >Crear logros</a>  
 <a href="/lecciones/index" *ngIf="clave !=null">Listar lecciones</a> 
-<a href="/lecciones/create" *ngIf="clave !=null"   >Crear lecciones</a>  
+<a href="/lecciones/create" *ngIf="clave !=null"   >Crear lecciones</a> 
+<a href="/feeds/index" *ngIf="clave !=null">Listar Foro</a>
+
 <button *ngIf="clave != null" class="btn btn-outline-danger" (click)="logout()">Cerrar Sesión</button>
 
 </nav>

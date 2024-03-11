@@ -64,7 +64,8 @@ export class IndexComponent {
 
 
   eliminarQuiz(id:any): void {
-    this.QuizService.deleteQuiz(id, this.token).subscribe(data=>{
+    this.QuizService.deleteQuiz(id, this.token).subscribe(
+      data=>{
       this.cargaQuiz();
     },
     error =>{

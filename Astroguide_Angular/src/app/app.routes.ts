@@ -14,6 +14,9 @@ import { IndexComponent as IndexLogros } from './logros/index/index.component';
 import { CreateComponent as CreateLecciones } from './lecciones/create/create.component';
 import { IndexComponent as IndexLecciones } from './lecciones/index/index.component';
 
+import { CreateComponent as CreateFeeds } from './feeds/create/create.component';
+import { IndexComponent as IndexFeeds } from './feeds/index/index.component';
+
 
 
 export const routes: Routes = [
@@ -39,7 +42,9 @@ export const routes: Routes = [
     {path: 'lecciones/editar/:id', component: CreateLecciones }, 
 
     
-
+    {path: 'feeds/index', component: IndexFeeds },
+    {path: 'feeds/create', component: CreateFeeds },
+    {path: 'feeds/editar/:id', component: CreateFeeds }, 
     
 
 

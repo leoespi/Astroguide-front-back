@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class QuizService {
   url='http://127.0.0.1:8000/api/quiz/';
   logrosUrl = 'http://127.0.0.1:8000/api/logro/';
+  
   constructor(private http:HttpClient){
   }
     
