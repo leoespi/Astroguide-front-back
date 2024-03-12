@@ -30,7 +30,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('quiz', QuizApiController::class)->middleware('auth:api');
-Route::apiResource('lecciones', LeccionesApiController::class);
+Route::apiResource('lecciones', LeccionesApiController::class)->middleware('auth:api');
 Route::apiResource('user', UserApiController::class);
 Route::apiResource('rol', RolApiController::class);
 Route::apiResource('logro', LogroApiController::class);
@@ -66,3 +66,6 @@ Route::get('/get/user', [UserApiController::class, 'indexUser'])->middleware('au
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/desbloquearleccion/{id}', [LeccionesApiController::class, 'desbloquearleccion'])->middleware('auth:api');
