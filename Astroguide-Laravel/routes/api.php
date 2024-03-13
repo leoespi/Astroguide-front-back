@@ -61,7 +61,7 @@ Route::post('quiz/validarTerminacion', [QuizApiController::class, 'validarTermin
 Route::get('/logroUser', [LogroApiController::class, 'mostrarLogrosUser'])->middleware('auth:api');
 
 Route::get('/get/user', [UserApiController::class, 'indexUser'])->middleware('auth:api');
-Route::put('/updateUser/{id}', [UserApiController::class, 'update'])->middleware('auth:api');
+Route::put('/updateUser', [UserApiController::class, 'update'])->middleware('auth:api');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
