@@ -21,16 +21,9 @@ export class LeccionesService {
     return this.http.post(this.url,leccion, options );
   }
 
-  getLecciones(access_token:any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + access_token
-    });
-    const options = { headers: headers};
-    return this.http.get(this.url, options);
-  }
+ 
 
-  getLeccion(id: string, access_token:any):Observable<any> {
+  getLecciones( access_token:any):Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + access_token

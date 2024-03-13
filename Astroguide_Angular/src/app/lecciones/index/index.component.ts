@@ -25,14 +25,14 @@ export class IndexComponent {
   }
 
   ngOnInit(): void {
-    this.cargarLecciones();
     this.recuperarToken();
+    this.cargarLecciones();
     
   }
 
   cargarLecciones(): void {
-    this.leccionesService.getLecciones(this.token).subscribe(
-      data => {
+    this.leccionesService.getLecciones(this.token).subscribe(data=> {
+        console.log(data);
         
         this.listarLecciones = data;
       },

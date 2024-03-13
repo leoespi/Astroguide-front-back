@@ -40,8 +40,8 @@ export class CreateComponent {
     this.id = this.aRoute.snapshot.paramMap.get('id');
   }
   ngOnInit(): void {
-    this.verEditar();
     this.recuperarToken();
+    this.verEditar();
   }
 
   recuperarToken(){
@@ -81,7 +81,7 @@ export class CreateComponent {
   }
 
     if (this.id != null) {
-      this.usersService.updateUsers(this.id, users).subscribe(
+      this.usersService.updateUsers(this.id, users, this.token).subscribe(
         data => {
           this._router.navigate(['/users/index']);
         },
@@ -92,7 +92,7 @@ export class CreateComponent {
       );
 
     } else {
-      this.usersService.addUsers(users).subscribe(data => {
+      this.usersService.addUsers(users, this.token).subscribe(data => {
         console.log(data);
         this._router.navigate(['/users/index']);
       },

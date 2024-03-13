@@ -31,9 +31,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('quiz', QuizApiController::class)->middleware('auth:api');
 Route::apiResource('lecciones', LeccionesApiController::class)->middleware('auth:api');
-Route::apiResource('user', UserApiController::class);
+Route::apiResource('user', UserApiController::class)->middleware('auth:api');
 Route::apiResource('rol', RolApiController::class);
 Route::apiResource('logro', LogroApiController::class);
+
+Route::get('/users', [UserApiController::class, 'index'])->middleware('auth:api');
 
 // Ruta para mostrar un logro específico
 Route::get('/logros/{id}', [LogroApiController::class, 'show'])->middleware('auth:api');

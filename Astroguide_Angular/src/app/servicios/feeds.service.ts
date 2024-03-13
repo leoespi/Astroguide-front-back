@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class FeedsService {
   url='http://127.0.0.1:8000/api/feeds/';
-  categoriaUrl = 'http://127.0.0.1:8000/api/categoria/';
+  //categoriaUrl = 'http://127.0.0.1:8000/api/categoria/';
   userUrl = 'http://127.0.0.1:8000/api/user/';
 
 
@@ -63,7 +63,7 @@ export class FeedsService {
       'Authorization': 'Bearer ' + access_token
     });
     const options = { headers: headers};
-    return this.http.get(this.userUrl, options);
+    return this.http.get(this.url, options);
   }
 
 

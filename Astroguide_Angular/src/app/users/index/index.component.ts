@@ -19,15 +19,20 @@ export class IndexComponent {
   token: string | null = null;
 
 
-
   constructor(private usersService: UsersService, private _router: Router, private aRouter: ActivatedRoute ) { 
     this.id=this.aRouter.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    
+    this.recuperarToken();
+    this.cargaUsers();;
+  }
 
-    this.cargaUsers();
+  recuperarToken(){
+    this.token = localStorage.getItem('clave');
+    if (this.token == null) {
+      this._router.navigate(['/']);
+    }
   }
 
 
@@ -35,10 +40,8 @@ export class IndexComponent {
   
   cargaUsers(): void{
     this.usersService.getUserss( this.token).subscribe(data=>{
-      
       console.log(data);
-      this.listaUserss = data;
-      
+      this.listaUserss = data;     
     },
     err =>{
       console.log(err);
@@ -46,7 +49,7 @@ export class IndexComponent {
     )
   }
   eliminarUsers(id:any): void {
-    this.usersService.deleteUsers(id).subscribe(data=>{
+    this.usersService.deleteUsers(id, this.token).subscribe(data=>{
       this.cargaUsers();
     },
     error =>{

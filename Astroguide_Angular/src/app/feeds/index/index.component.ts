@@ -33,15 +33,18 @@ export class IndexComponent {
 
   cargarFeeds(): void {
     this.feedService.getFeeds(this.token).subscribe(
-      (response: any) => {
-        // Aquí asumimos que la respuesta tiene una propiedad 'feeds'
-        this.listarFeeds = response.feeds;
+      data => {
+        console.log(data);
+        
+          this.listarFeeds = data;
+         
       },
       err => {
         console.log(err);
       }
     );
   }
+  
   
 
   recuperarToken() {
