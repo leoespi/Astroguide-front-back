@@ -22,6 +22,24 @@ class FeedController extends Controller
         ], 200);
     }
 
+    
+
+    public function indexall()
+    {
+
+        $feeds = Feed::all();
+        $data=array();
+        foreach ($feeds as $f ) {
+            $f->nombre=$f->user->name;
+            array_push($data, $f);
+        }        
+        return response(
+            $data
+        , 200);
+    }
+
+    
+
     public function store(PostRequest $request)
     {
         $request->validated();
@@ -93,4 +111,19 @@ class FeedController extends Controller
             'comments' => $comments
         ], 200);
     }
+
+    public function destroy($id){
+        $feed = Feed::find($id);
+        if (!$feed) {
+            return response([
+              'message' => '404 Not found'
+            ], 500);
+        }
+        $feed->delete();
+        return response([
+          'message' => 'deleted'
+        ], 200);
+    }
 }
+
+

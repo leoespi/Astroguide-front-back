@@ -42,8 +42,9 @@ Route::get('/logros/{id}', [LogroApiController::class, 'show'])->middleware('aut
 
 Route::get('/quiz/admin', [QuizApiController::class, 'indexadmin']);
 
+Route::delete('/feeds/{id}', [FeedController::class, 'destroy'])->middleware('auth:api');
 
-
+Route::get('/feeds/all', [FeedController::class, 'indexall'])->middleware('auth:api');
 Route::get('/feeds', [FeedController::class, 'index'])->middleware('auth:api');
 Route::post('/feed/store', [FeedController::class, 'store'])->middleware('auth:api');
 Route::post('/feed/like/{feed_id}', [FeedController::class, 'likePost'])->middleware('auth:api');
@@ -55,6 +56,8 @@ Route::get('/test', function () {
         'message' => 'Api is working'
     ], 200);
 });
+
+Route::put('/updateUser', [UserApiController::class, 'update'])->middleware('auth:api');
 
 Route::post('register', [AuthenticationController::class, 'register']);
 Route::post('login', [AuthenticationController::class, 'login']);

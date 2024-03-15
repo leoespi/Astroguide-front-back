@@ -9,7 +9,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FeedsService {
-  url='http://127.0.0.1:8000/api/feeds/';
+  url='http://127.0.0.1:8000/api/feeds/all';
+
+  urldestroy='http://127.0.0.1:8000/api/feeds/';
   //categoriaUrl = 'http://127.0.0.1:8000/api/categoria/';
   userUrl = 'http://127.0.0.1:8000/api/user/';
 
@@ -54,7 +56,7 @@ export class FeedsService {
       'Authorization': 'Bearer ' + access_token
     });
     const options = { headers: headers};
-    return this.http.delete(this.url+id, options);
+    return this.http.delete(this.urldestroy+id, options);
   }
 
   getUserss(access_token:any):Observable<any>{

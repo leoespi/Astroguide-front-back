@@ -37,19 +37,19 @@ class UserApiController extends Controller
 
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = User::find($id);
+        $user = Auth::user();
         $user->name = $request->name;
+        $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
+         $user->save();
         return response()->json($user);
 
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage.  
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

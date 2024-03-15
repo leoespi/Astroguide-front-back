@@ -9,7 +9,7 @@
             <th>ID</th>
             <th>Contenido</th>
             <th>User ID </th>
-            
+            <th>Nombre</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -18,11 +18,10 @@
             <td>{{ feeds.id }}</td>
             <td>{{ feeds.content }}</td>
             <td>{{feeds.user_id}}</td>
+            <td>{{feeds.nombre}}</td>
            
             
-            <td>
-                <button type="button" class="btn btn-success" (click)="editarFeeds(feeds.id)">Editar</button>
-            </td>
+            
 
             <td><button type="button" class="btn btn-danger" (click)="eliminarFeeds(feeds.id)">Eliminar</button></td>
         </tr>
