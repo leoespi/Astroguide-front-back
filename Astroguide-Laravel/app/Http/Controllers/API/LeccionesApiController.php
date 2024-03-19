@@ -5,6 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lecciones;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User_has_lecciones;
+
 
 class LeccionesApiController extends Controller
 {
@@ -15,9 +18,26 @@ class LeccionesApiController extends Controller
      */
     public function index()
     {
-        $lecciones = Lecciones::all();
-        return response()->json($lecciones, 200);
+        $user = Auth::user();
 
+        if (!$user) {
+            return response()->json(['error' => 'Usuario no autenticado'], 401);
+        }
+
+        $lecciones = Lecciones::all();
+
+        $data = array();
+        foreach ($lecciones as $l){
+            $leccionesusuario = User_has_lecciones::where('lecciones_id', $l->id)
+                ->where('user_id', $user->id)->get();      
+            if (count($leccionesusuario) > 0 || $l->id==1) {
+                $l->desbloqueda=true;
+            } else {
+                $l->desbloqueda=false;
+            }
+            array_push($data, $l);
+        }
+        return response()->json($data, 200);
     }
 
     /**
@@ -82,5 +102,15 @@ class LeccionesApiController extends Controller
         $lecciones = Lecciones::find($id);
         $lecciones->delete();
         return response()->json($lecciones);
+    }
+
+    public function desbloquearleccion($id)
+    {
+        $user_has_lecciones = User_has_lecciones::create([
+            'user_id' => Auth::user()->id,
+            'lecciones_id' => $id+1,
+            "orden" => 2 
+        ]);
+        return response()->json(["message" => "Desbloqueatse la siguiene leccion"]);
     }
 }

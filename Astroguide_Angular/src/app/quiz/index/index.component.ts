@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { QuizService } from '../../servicios/quiz.service';
 import { Quiz } from '../../modelos/quiz.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Logros } from '../../modelos/logros.model'; // Asegúrate de importar el modelo de Logro
 
 
 @Component({
@@ -17,6 +18,7 @@ export class IndexComponent {
   id: string | null;
   listarQuiz: Quiz[]= [];
   token: string | null = null;
+  logros: Logros[] = [];
 
   constructor (private QuizService: QuizService,private router: Router, private aRouter: ActivatedRoute) {
     
@@ -25,8 +27,19 @@ export class IndexComponent {
 
   ngOnInit(): void {
     this.recuperarToken();
-    
+    this.loadLogros();
     this.cargaQuiz();
+  }
+
+  loadLogros(): void {
+    this.QuizService.getLogros(this.token).subscribe(
+      logros => {
+        this.logros = logros;
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
   cargaQuiz(): void{
     this.QuizService.getQuiz(this.token).subscribe(data=>{
@@ -51,7 +64,8 @@ export class IndexComponent {
 
 
   eliminarQuiz(id:any): void {
-    this.QuizService.deleteQuiz(id, this.token).subscribe(data=>{
+    this.QuizService.deleteQuiz(id, this.token).subscribe(
+      data=>{
       this.cargaQuiz();
     },
     error =>{

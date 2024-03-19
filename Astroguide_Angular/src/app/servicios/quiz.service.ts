@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class QuizService {
   url='http://127.0.0.1:8000/api/quiz/';
   logrosUrl = 'http://127.0.0.1:8000/api/logro/';
+  
   constructor(private http:HttpClient){
   }
     
@@ -49,7 +50,7 @@ export class QuizService {
         'Authorization': 'Bearer ' + access_token
       });
       const options = { headers: headers};
-      return this.http.delete(this.url+id, access_token);
+      return this.http.delete(this.url+id, options);
     }
 
 

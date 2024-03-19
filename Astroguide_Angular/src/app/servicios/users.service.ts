@@ -17,22 +17,42 @@ export class UsersService {
         'Authorization': 'Bearer ' + access_token
       });
       const options = { headers: headers};
-      return this.http.get(this.url, options);
+      return this.http.get("http://127.0.0.1:8000/api/users", options);
     }
 
-    addUsers(users : Users):Observable<any>{
-      return this.http.post(this.url,users);
+    addUsers(users : Users, access_token:any):Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.post(this.url,users, options);
     }
 
-    getUsers(id:string):Observable<any>{
-      return this.http.get(this.url+id);
+    getUsers(access_token:any):Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.get(this.url+"all",options);
     }
     
-    updateUsers(id:string, users:Users):Observable<any>{
-      return this.http.put(this.url+id,users);         
+    updateUsers(id:string, users:Users, access_token:any):Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.put(this.url+id,users, options);         
     }
 
-    deleteUsers(id:string):Observable<any>{
-      return this.http.delete(this.url+id);
+    deleteUsers(id:string, access_token:any):Observable<any>{
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + access_token
+      });
+      const options = { headers: headers};
+      return this.http.delete(this.url+id, options);
     }
 }
