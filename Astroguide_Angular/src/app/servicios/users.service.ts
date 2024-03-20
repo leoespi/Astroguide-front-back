@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UsersService {
 
-  url='http://127.0.0.1:8000/api/user/';
+  url='https://astroguide.api.adsocidm.com/api/user';
   constructor(private http:HttpClient){
   }
     getUserss(access_token:any):Observable<any>{
@@ -17,7 +17,7 @@ export class UsersService {
         'Authorization': 'Bearer ' + access_token
       });
       const options = { headers: headers};
-      return this.http.get("http://127.0.0.1:8000/api/users", options);
+      return this.http.get("https://astroguide.api.adsocidm.com/api/users", options);
     }
 
     addUsers(users : Users, access_token:any):Observable<any>{
@@ -44,7 +44,7 @@ export class UsersService {
         'Authorization': 'Bearer ' + access_token
       });
       const options = { headers: headers};
-      return this.http.put(this.url+id,users, options);         
+      return this.http.put(this.url+"/"+id,users, options);         
     }
 
     deleteUsers(id:string, access_token:any):Observable<any>{
@@ -53,6 +53,6 @@ export class UsersService {
         'Authorization': 'Bearer ' + access_token
       });
       const options = { headers: headers};
-      return this.http.delete(this.url+id, options);
+      return this.http.delete(this.url+"/"+id, options);
     }
 }
