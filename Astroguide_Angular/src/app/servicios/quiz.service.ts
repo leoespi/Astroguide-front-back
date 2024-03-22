@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class QuizService {
-  url='http://127.0.0.1:8000/api/quiz/';
-  logrosUrl = 'http://127.0.0.1:8000/api/logro/';
+  url='https://astroguide.api.adsocidm.com/api/quiz';
+  logrosUrl = 'https://astroguide.api.adsocidm.com/api/logro';
   
   constructor(private http:HttpClient){
   }
@@ -41,7 +41,7 @@ export class QuizService {
         'Authorization': 'Bearer ' + access_token
       });
       const options = { headers: headers};
-      return this.http.put(this.url+id,quiz, options);         
+      return this.http.put(this.url +"/"+id,quiz, options);         
     }
 
     deleteQuiz(id:string, access_token:any):Observable<any>{
@@ -50,7 +50,7 @@ export class QuizService {
         'Authorization': 'Bearer ' + access_token
       });
       const options = { headers: headers};
-      return this.http.delete(this.url+id, options);
+      return this.http.delete(this.url+"/"+id, options);
     }
 
 

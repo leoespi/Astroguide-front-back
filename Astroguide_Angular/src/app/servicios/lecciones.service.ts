@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LeccionesService {
-  url='http://127.0.0.1:8000/api/lecciones/';
+  url='https://astroguide.api.adsocidm.com/api/lecciones';
   constructor(private http:HttpClient){
 
   }
@@ -40,7 +40,7 @@ export class LeccionesService {
     });
     const options = { headers: headers};
 
-    return this.http.put(this.url+id,leccion,options);         
+    return this.http.put(this.url+"/"+id,leccion,options);         
   }
 
   deleteLeccion(id: string, access_token:any): Observable<any> {
@@ -51,7 +51,7 @@ export class LeccionesService {
     const options = { headers: headers};
 
 
-    return this.http.delete(this.url+id, options);
+    return this.http.delete(this.url+"/"+id, options);
   }
 
   
