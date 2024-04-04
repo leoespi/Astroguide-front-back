@@ -37,7 +37,7 @@ class LeccionesApiController extends Controller
             }
             array_push($data, $l);
         }
-        return response()->json($data, 200);
+        return response()->json($data, 200,[], JSON_NUMERIC_CHECK);
     }
 
     /**
