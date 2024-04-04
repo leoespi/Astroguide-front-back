@@ -77,7 +77,7 @@ export class CreateComponent {
     const users: Users = {
       name: this.usersForm.get('name')?.value,
       email: this.usersForm.get('email')?.value,
-      password: this.usersForm.get('password')?.value
+      username: this.usersForm.get('password')?.value
   }
 
     if (this.id != null) {

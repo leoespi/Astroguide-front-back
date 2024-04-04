@@ -3,12 +3,12 @@ export class Users {
     name :string | null | undefined;
 
     email :string | null | undefined;
-    password:string | null | undefined;
+    username:string | null | undefined;
     
-   constructor(id : number, name:string, email:string, password:string){
+   constructor(id : number, name:string, email:string, username:string){
     this.id = id;
     this.name = name;
     this.email = email;
-    this.password = password;
+    this.username = username;
    }
 }

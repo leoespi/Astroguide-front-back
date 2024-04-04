@@ -26,7 +26,7 @@ export class CreateComponent {
 
   leccionesForm =  this.fb.group({
     Nombre_de_la_leccion: '',
-    contenido: '',
+    Contenido: '',
     Tipo_de_leccion: ''    
     			
   });
@@ -55,14 +55,16 @@ export class CreateComponent {
       this.leccionesServicio.getLecciones(this.token).subscribe(
         data => {
           
-          this.leccionesForm.setValue({
+          this.leccionesForm.patchValue({
             Nombre_de_la_leccion: data.Nombre_de_la_leccion,
-            contenido: data.contenido,
+            Contenido: data.Contenido,
             Tipo_de_leccion: data.Tipo_de_leccion,
           });
+          console.log(data);
+
         },
         err => {
-          console.log(err);
+          console.log(err+"error");
         }
       );
     }
@@ -72,7 +74,7 @@ export class CreateComponent {
   agregarLecciones(): void {
     const leccion: Lecciones = {
       Nombre_de_la_leccion: this.leccionesForm.get('Nombre_de_la_leccion')?.value!,
-      contenido: this.leccionesForm.get('contenido')?.value!,
+      Contenido: this.leccionesForm.get('Contenido')?.value!,
       Tipo_de_leccion: this.leccionesForm.get('Tipo_de_leccion')?.value!,
     };
   
