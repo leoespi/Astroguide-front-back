@@ -56,7 +56,7 @@ class FeedController extends Controller
 
     public function likePost($feed_id)
     {
-        // select feed with feed_id
+        // Seleccionar publicacion por ID (Admin-angular)
         $feed = Feed::whereId($feed_id)->first();
 
         if (!$feed) {
@@ -65,7 +65,7 @@ class FeedController extends Controller
             ], 500);
         }
 
-        // Unlike post
+        // Unlike post (NO IMPLEMENTADO AUN)
         $unlike_post = Like::where('user_id', auth()->id())->where('feed_id', $feed_id)->delete();
         if ($unlike_post) {
             return response([
@@ -88,6 +88,7 @@ class FeedController extends Controller
     public function comment(Request $request, $feed_id)
     {
 
+        
         $request->validate([
             'body' => 'required'
         ]);

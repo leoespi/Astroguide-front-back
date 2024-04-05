@@ -16,6 +16,10 @@ class LeccionesApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+     /*dentro de esta funcion de "index" encontramos una funcion de "bloque y desbloqueo" la cual los permite desbloquear las leccion siguiente
+     despues de leer la leccion previa a esa*/
+
     public function index()
     {
         $user = Auth::user();
@@ -50,11 +54,8 @@ class LeccionesApiController extends Controller
     {
         $lecciones = new Lecciones();
         $lecciones->Nombre_de_la_leccion= $request->Nombre_de_la_leccion;
-        $lecciones->Contenido = $request -> Contenido;
-        //$lecciones->Lecciones_Diarias_realizadas= $request->Lecciones_Diarias_realizadas;
-        //$lecciones->Lecciones_Totales_realizadas= $request->Lecciones_Totales_realizadas;
+        $lecciones->Contenido = $request -> Contenido;       
         $lecciones->Tipo_de_leccion= $request->Tipo_de_leccion;
-        //$lecciones->user_id= $request->user_id;
         $lecciones->save();
         return response()->json($lecciones, 200);
     }
@@ -83,10 +84,7 @@ class LeccionesApiController extends Controller
         $lecciones = Lecciones::find($id);
         $lecciones->Nombre_de_la_leccion= $request->Nombre_de_la_leccion;
         $lecciones->Contenido = $request -> Contenido;
-        //$lecciones->Lecciones_Diarias_realizadas= $request->Lecciones_Diarias_realizadas;
-        //$lecciones->Lecciones_Totales_realizadas= $request->Lecciones_Totales_realizadas;
         $lecciones->Tipo_de_leccion= $request->Tipo_de_leccion;
-        //$lecciones->user_id= $request->user_id;
         $lecciones->save();
         return response()->json($lecciones);
     }
@@ -103,7 +101,7 @@ class LeccionesApiController extends Controller
         $lecciones->delete();
         return response()->json($lecciones);
     }
-
+    //aqui se estipula el orden en el cual se desbloquearan las lecciones
     public function desbloquearleccion($id)
     {
         $user_has_lecciones = User_has_lecciones::create([

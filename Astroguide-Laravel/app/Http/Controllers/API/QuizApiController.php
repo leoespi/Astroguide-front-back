@@ -61,7 +61,7 @@ class QuizApiController extends Controller
         //return redirect()->route('quizs.index');
     }
 
-
+    //Acualizar la informacion de los quizes
     public function update(Request $request, $id){
         $quizs = Quiz::find($id);
         $quizs->Titulo= $request->Titulo;
@@ -94,7 +94,7 @@ class QuizApiController extends Controller
         $quizs = Quiz::find($id);
         return response()->json($quizs, 200);
     }
-
+    //eliminar los quizes desde el apartado del admin
     public function destroy($id)
     {
         $quizs = Quiz::find($id);
@@ -102,7 +102,7 @@ class QuizApiController extends Controller
         return response()->json($quizs);
         
     }
-
+    //esta funcion es para verificar si el usuario contesto correctamente el quiz
     public function validarTerminacion(Request $request)
     {
     // Traer el id del quiz y la respuesta del usuario
@@ -122,9 +122,8 @@ class QuizApiController extends Controller
             if($respuestasCorrectas == $respuestasClientes){
                 $quizTerminadoCorrectamente = true;
         
-    }
+    }//si el quiz se termina con exito se le asigna el logro al usuario
     if ($quizTerminadoCorrectamente) {
-        //$logro = $quiz -> logro -> logro;
         $logro = Logros::find($quiz->logro_id);
     $user = Auth::user();
     $logro->users()->syncWithoutDetaching($user->id);

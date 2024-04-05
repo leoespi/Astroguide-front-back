@@ -102,7 +102,7 @@ class LogroApiController extends Controller
         $logros->delete();
         return response()->json($logros);
     }
-
+    //muestra los logros que tiene X usuario en su cuenta
     public function mostrarLogrosUser()
     {
         $user = Auth::user();
