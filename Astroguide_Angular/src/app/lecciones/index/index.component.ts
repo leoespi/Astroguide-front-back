@@ -18,6 +18,7 @@ export class IndexComponent {
   id: string | null;
   listarLecciones: Lecciones[] = [];
   token: string | null = null;
+  clave: string | null = null;
 
 
   constructor(private leccionesService: LeccionesService, private router: Router, private aRouter: ActivatedRoute) {
@@ -27,6 +28,11 @@ export class IndexComponent {
   ngOnInit(): void {
     this.recuperarToken();
     this.cargarLecciones();
+
+    if(this.clave == null){
+      this.clave=localStorage.getItem('clave');
+
+    }
     
   }
 

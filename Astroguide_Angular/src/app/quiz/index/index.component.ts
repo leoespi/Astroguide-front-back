@@ -15,6 +15,7 @@ import { Logros } from '../../modelos/logros.model'; // Asegúrate de importar e
   styleUrl: './index.component.scss'
 })
 export class IndexComponent {
+  clave: string | null = null;
   id: string | null;
   listarQuiz: Quiz[]= [];
   token: string | null = null;
@@ -29,6 +30,11 @@ export class IndexComponent {
     this.recuperarToken();
     this.loadLogros();
     this.cargaQuiz();
+
+    if(this.clave == null){
+      this.clave=localStorage.getItem('clave');
+
+    }
   }
 
   loadLogros(): void {

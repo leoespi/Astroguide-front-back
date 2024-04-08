@@ -1,5 +1,21 @@
+
+h1 {
+  text-align: center;
+}
+
 .scroll-container {
   width: 100%; /* Ancho del contenedor */
   height: 700px; /* Altura del contenedor */
   overflow-y: auto; /* Habilita el scrollbar vertical cuando sea necesario */
 }
+
+
+
+nav a {
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 2px solid rgb(49, 51, 180);
+  border-radius: 5px;
+  color: rgb(49, 51, 180);
+}
+

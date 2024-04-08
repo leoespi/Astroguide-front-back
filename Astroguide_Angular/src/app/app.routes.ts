@@ -17,6 +17,8 @@ import { IndexComponent as IndexLecciones } from './lecciones/index/index.compon
 import { CreateComponent as CreateFeeds } from './feeds/create/create.component';
 import { IndexComponent as IndexFeeds } from './feeds/index/index.component';
 
+import { IndexComponent as IndexComment } from './comment/index/index.component';
+
 
 
 export const routes: Routes = [
@@ -28,7 +30,7 @@ export const routes: Routes = [
     {path: 'quiz/index', component: IndexQuiz },
     {path: 'quiz/create', component: CreateQuiz },
     {path: 'quiz/editar/:id', component: CreateQuiz }, 
-
+                                                                                        
     {path: 'users/index', component:IndexUsers},
     {path: 'users/create', component: CreateUsers },
     {path: 'users/editar/:id', component: CreateUsers },
@@ -46,6 +48,6 @@ export const routes: Routes = [
     {path: 'feeds/create', component: CreateFeeds },
     {path: 'feeds/editar/:id', component: CreateFeeds }, 
     
-
+    {path: 'feed/comments/index', component: IndexComment },
 
 ];

@@ -17,6 +17,7 @@ export class IndexComponent {
 
   listarFeeds: Feeds[] = [];
   token: string | null = null;
+  clave: string | null = null;
   //categoria: Categoria [] = [];
 
   constructor(private feedService: FeedsService, private router: Router, private aRouter: ActivatedRoute) {
