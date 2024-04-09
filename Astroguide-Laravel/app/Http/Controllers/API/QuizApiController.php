@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 
 class QuizApiController extends Controller
 {
+    //funcion eliminar quiz al conseguir logro
+    
     public function index()
     {
         $user = Auth::user();
