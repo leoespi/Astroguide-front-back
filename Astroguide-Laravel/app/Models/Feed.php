@@ -13,7 +13,8 @@ class Feed extends Model
 
     protected $fillable = [
         'user_id',
-        'content'
+        'content',
+        'category_id'
     ];
 
     protected $appends = ['liked'];
@@ -37,4 +38,11 @@ class Feed extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function categories()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    
 }
+
