@@ -1,8 +1,9 @@
 <?php
 
 namespace Database\Seeders;
+use App\Models\Category;
 
-class AdminSeeder extends Seeder{
+class CategorieSeeder extends Seeder{
     /**
      * Run the database seeds.
      *
@@ -11,7 +12,7 @@ class AdminSeeder extends Seeder{
 
      public function run()
      {
-        $category = Categorie::create([
+        $category = Category::create([
             'name'=>"Sin categoria",
             'id'=>1
         ]);
