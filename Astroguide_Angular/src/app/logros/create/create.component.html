@@ -8,7 +8,12 @@
   <label for="titulo">Rareza</label> <br>
   <input formControlName="Rareza" matInput type="text" class="form-control" id="Rareza" name="Rareza">
 </div>
-
+<div class="form-group">
+  <label>Leccion ID:</label>
+  <select formControlName="leccion_id" matNativeControl id="leccion_id" name="leccion_id">
+      <option *ngFor="let leccion of Lecciones" [value]="leccion.id">{{ leccion.id }} - {{ leccion.Nombre_de_la_leccion }}</option>
+      </select>
+</div>
 
   <button class="btn btn-success">Crear</button>
 

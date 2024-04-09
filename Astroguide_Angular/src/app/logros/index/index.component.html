@@ -15,6 +15,7 @@
                 <th>Id</th>
                 <th>Nombre del Logro</th>
                 <th>Rareza</th>
+                <th>Leccion ID</th>
             </tr>
         </thead>
 
@@ -22,6 +23,7 @@
         <td> {{ logros.id }}</td>
         <td> {{ logros.Nombre_del_Logro }}</td>
         <td> {{ logros.Rareza }}</td>
+        <td> {{ logros.leccion_id }}</td>
         <td>
             <button type="button" class="btn btn-success" (click)="editarLogro(logros.id)">Editar</button>
             <button type="button" class="btn btn-danger" (click)="eliminarLogro(logros.id)">Eliminar</button>
