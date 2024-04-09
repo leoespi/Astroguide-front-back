@@ -5,6 +5,7 @@ import { LogrosService } from '../../servicios/logros.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
+  
   selector: 'app-index',
   standalone: true,
   imports: [CommonModule],
@@ -14,6 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class IndexComponent {
   listaLogros: Logros[]=[]; 
+  clave: string | null = null;
   id: string | null; 
 
   constructor (private logrosServicio: LogrosService,
@@ -23,6 +25,11 @@ export class IndexComponent {
 
     ngOnInit(): void {
       this.cargarLogros();
+
+      if(this.clave == null){
+        this.clave=localStorage.getItem('clave');
+  
+      }
     }
 
   cargarLogros(): void{

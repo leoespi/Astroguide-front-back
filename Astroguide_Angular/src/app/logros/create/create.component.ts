@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 import { Logros } from '../../modelos/logros.model';
@@ -8,7 +13,7 @@ import { LogrosService } from '../../servicios/logros.service';
 @Component({
   selector: 'app-create',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, MatFormFieldModule,FormsModule, ReactiveFormsModule, MatInputModule],
   providers: [LogrosService],
   templateUrl: './create.component.html',
   styleUrl: './create.component.scss'

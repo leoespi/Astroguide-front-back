@@ -33,6 +33,7 @@ class CreateQuizsTable extends Migration
             $table->text('Respuesta9');
             $table->text('Respuesta10');
             $table->unsignedBigInteger('logro_id')->nullable();
+            $table->boolean('bloqueada');
             $table->timestamps();
         
             $table->foreign('logro_id')->references('id')->on('logros')->onDelete('cascade');

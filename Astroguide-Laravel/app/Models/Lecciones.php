@@ -16,11 +16,14 @@ class Lecciones extends Model
         "Nombre_de_la_leccion",
         "Contenido",
         "Tipo_de_leccion",
-        
     ];
 
 
 
+    public function logro()
+    {
+        return $this->hasOne(logro::class);
+    }
 
     public function quiz()
     {

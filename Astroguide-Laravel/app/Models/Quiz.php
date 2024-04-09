@@ -30,6 +30,7 @@ class Quiz extends Model
         "Respuesta8",
         "Respuesta9",
         "Respuesta10",
+        "bloqueada"
     ];
 
     public $timestamps = false;
