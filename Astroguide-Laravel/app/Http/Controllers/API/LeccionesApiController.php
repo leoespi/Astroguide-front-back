@@ -101,14 +101,7 @@ class LeccionesApiController extends Controller
         $lecciones->delete();
         return response()->json($lecciones);
     }
-    //aqui se estipula el orden en el cual se desbloquearan las lecciones
-    public function desbloquearleccion($id)
-    {
-        $user_has_lecciones = User_has_lecciones::create([
-            'user_id' => Auth::user()->id,
-            'lecciones_id' => $id+1,
-            "orden" => 2 
-        ]);
-        return response()->json(["message" => "Desbloqueatse la siguiene leccion"]);
-    }
+
+    
+    
 }

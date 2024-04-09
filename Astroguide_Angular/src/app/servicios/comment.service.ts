@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class CommentService {
 
 
-  private url = 'http://astroguide.api.adsocidm.com/api/feed/comments/';
+  private url = 'https://astroguide.api.adsocidm.com/api/feed/comments/';
   // Otros URLs relacionados con comentarios si los hay...
 
   userUrl = 'https://astroguide.api.adsocidm.com/api/user';

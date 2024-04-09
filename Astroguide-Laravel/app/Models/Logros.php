@@ -11,6 +11,12 @@ class Logros extends Model
     protected $fillable = ['Nombre_del_Logro', 'Rareza'];
     public $timestamps = false;
 
+    public function lecciones()
+    {
+        return $this->belongsTo(lecciones::class);
+    }
+    
+
     public function users(){
         return $this->
         

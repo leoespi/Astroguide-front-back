@@ -73,4 +73,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/desbloquearleccion/{id}', [LeccionesApiController::class, 'desbloquearleccion'])->middleware('auth:api');
+Route::get('/desbloquearleccion', [QuizApiController::class, 'desbloquearleccion'])->middleware('auth:api');
+
+Route::get('/desbloquearquiz/{id}', [QuizApiController::class, 'desbloquearquiz'])->middleware('auth:api');
