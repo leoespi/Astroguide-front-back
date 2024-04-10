@@ -20,6 +20,7 @@ class AuthenticationController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'rol_id' => 2,
         ];
 
         $user = User::create($userData);

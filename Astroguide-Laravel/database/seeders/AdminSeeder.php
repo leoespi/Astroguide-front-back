@@ -19,7 +19,8 @@ class AdminSeeder extends Seeder{
             'name' => "Admin",
             'email' => "admin@gmail.com",
             'password' => bcrypt('123456'),
-            'username' => "NewAdmin" // Agrega el nombre de usuario aquí
+            'username' => "NewAdmin", // Agrega el nombre de usuario aquí
+            'rol_id' => 1,
 
         ]);
         

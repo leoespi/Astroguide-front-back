@@ -31,6 +31,7 @@ class UserApiController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->rol_id = 2;
         $user->password =bcrypt($request->password);
         $user->save();
         return response()->json($user, 200);
