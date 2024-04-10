@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FeedsService {
-  url='https://astroguide.api.adsocidm.com/api/feeds/all';
+  url='http://127.0.0.1:8000/api/feeds/all';
 
-  urldestroy='https://astroguide.api.adsocidm.com/api/feeds';
+  urldestroy='http://127.0.0.1:8000/api/feeds';
   //categoriaUrl = 'http://127.0.0.1:8000/api/categoria/';
-  userUrl = 'https://astroguide.api.adsocidm.com/api/user';
+  userUrl = 'http://127.0.0.1:8000/api/user';
 
 
   constructor(private http:HttpClient) {

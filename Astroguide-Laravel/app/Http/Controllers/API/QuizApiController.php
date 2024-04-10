@@ -9,6 +9,7 @@ use App\Models\Quiz; // Importa el modelo Quiz
 use App\Models\QuizLogro; // Importa el modelo Quiz
 use App\Models\Logros;
 use App\Models\User_has_lecciones;
+use App\Models\Lecciones;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -133,12 +134,15 @@ class QuizApiController extends Controller
         $logro = Logros::find($quiz->logro_id);
     $user = Auth::user();
     $logro->users()->syncWithoutDetaching($user->id);
-    $this->desbloquearleccion();
+    $leccionDesbloqueada = $this->desbloquearleccion();
+    if (!$leccionDesbloqueada) {
+        return response()->json(["message" => true], 200, [], JSON_NUMERIC_CHECK);
+    }
 }  
     
     
     // Retorna el resultado
-    return response()->json(['quiz_terminado_correctamente' => $quizTerminadoCorrectamente]);
+    return response()->json(['message' => $quizTerminadoCorrectamente], 200, [], JSON_NUMERIC_CHECK);
     }
 
 
@@ -152,17 +156,20 @@ class QuizApiController extends Controller
         }  else {
             $id = $lecciones[count($lecciones)-1]->lecciones_id + 1;    
         }
-        /*
-        if (count($lecciones) == $id+2) {
-            return response()->json(["message" => "ya no hay lecciones por desbloquear"]);
-        } */
+        $lecciones = Lecciones::all();
+        $ultimaLeccionId = $lecciones[count($lecciones)-1]->id+1;
+        
+        if ($ultimaLeccionId = $id) {
+            return false;
+            
+        } 
 
         $user_has_lecciones = User_has_lecciones::create([
             'user_id' => Auth::user()->id,
             'lecciones_id' => $id,
             "orden" => 2 
         ]);
-        return response()->json(["message" => "Desbloqueatse la siguiene leccion"]);
+        return true;
     }
     
 

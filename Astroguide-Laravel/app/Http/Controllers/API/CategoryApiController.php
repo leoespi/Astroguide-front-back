@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Lecciones;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User_has_lecciones;
+use App\Models\Category;
+use App\Models\Feed;
 
 
-class LeccionesApiController extends Controller
+class CategoryApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,13 +26,13 @@ class LeccionesApiController extends Controller
     {
         try {
             //code...
-            $user = Auth::user();
+            /*$user = Auth::user();
 
             if (!$user) {
                 return response()->json(['error' => 'Usuario no autenticado'], 401);
-            }
+            }*/
 
-            $categories = Categories::all();
+            $categories = Category::all();
 
             return response()->json(['Categorias'=>$categories], 200,[], JSON_NUMERIC_CHECK);
         } catch (\Throwable $th) {
@@ -84,7 +86,7 @@ class LeccionesApiController extends Controller
             ]
         );
 
-        $category = Categories::find($id);
+        $category = Category::find($id);
         $category->name=$request->name;
         $category->save();
         return response()->json(['category'=>$category], 201,[], JSON_NUMERIC_CHECK);
@@ -98,7 +100,12 @@ class LeccionesApiController extends Controller
      */
     public function destroy($id)
     {
-        $category = Categories::find($id); //Lunas
+        $category = Category::find($id); //Lunas
+        if (!$category){
+            return response()->json(['msg' => 'No existe la categoria'], 404);
+        }
+
+        
         $feeds = Feed::where('category_id', $category->id)->get();
         foreach ($feeds as $feed){
             $feed->update([
@@ -107,7 +114,7 @@ class LeccionesApiController extends Controller
         }
 
         $category->delete();
-        return response()->json(['category'=>$category], 201,[], JSON_NUMERIC_);
+        return response()->json(['category'=>$category], 201,[], JSON_NUMERIC_CHECK);
     }
 
 }
