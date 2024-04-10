@@ -53,11 +53,14 @@ export class BodyComponent {
     console.log(this.loginForm.get('email')?.value! + this.loginForm.get('password')?.value);
     
     
+    
     this.loginService.login(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
       .subscribe( rs => {
         this.respuesta = rs;
+
+        
        
-        if (this.respuesta != null) {
+        if (this.respuesta != null && this.respuesta.user.rol_id!=2) {
           GlobalComponent.respuesta = this.respuesta;
           console.log(this.respuesta);
 
