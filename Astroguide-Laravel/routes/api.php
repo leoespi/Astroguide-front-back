@@ -11,6 +11,7 @@ use App\Http\Controllers\API\RespuestasApiController;
 use App\Http\Controllers\API\LogroApiController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Feed\FeedController;
+use App\Http\Controllers\API\CategoryApiController;
 
 
 
@@ -76,3 +77,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/desbloquearleccion', [QuizApiController::class, 'desbloquearleccion'])->middleware('auth:api');
 
 Route::get('/desbloquearquiz/{id}', [QuizApiController::class, 'desbloquearquiz'])->middleware('auth:api');
+
+Route::apiResource('categoria', CategoryApiController::class)->middleware('auth:api');
