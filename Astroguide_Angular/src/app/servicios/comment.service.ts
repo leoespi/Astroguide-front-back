@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 export class CommentService {
 
 
-  private url = 'https://astroguide.api.adsocidm.com/api/feed/comments/';
+  private url = 'http://127.0.0.1:8000/api/feed/comments/';
   // Otros URLs relacionados con comentarios si los hay...
 
-  userUrl = 'https://astroguide.api.adsocidm.com/api/user';
+  userUrl = 'http://127.0.0.1:8000/api/user';
 
   constructor(private http: HttpClient) { }
 

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  url='https://astroguide.api.adsocidm.com/api/';
+  url='http://127.0.0.1:8000/api/';
 
 
   constructor(private http: HttpClient) { }
