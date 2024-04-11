@@ -19,7 +19,8 @@ import { IndexComponent as IndexFeeds } from './feeds/index/index.component';
 
 import { IndexComponent as IndexComment } from './comment/index/index.component';
 
-
+import { CreateComponent as CreateCategory } from './category/create/create.component';
+import { IndexComponent as IndexCategory } from './category/index/index.component';
 
 export const routes: Routes = [
     {path: '', redirectTo:'inicio/body',pathMatch:'full'},
@@ -49,5 +50,9 @@ export const routes: Routes = [
     {path: 'feeds/editar/:id', component: CreateFeeds }, 
     
     {path: 'feed/comments/index', component: IndexComment },
+
+    {path: 'category/index', component: IndexCategory },
+    {path: 'category/create', component: CreateCategory },
+    {path: 'category/editar/:id', component: CreateCategory }, 
 
 ];

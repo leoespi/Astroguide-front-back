@@ -24,20 +24,25 @@ class CategoryApiController extends Controller
 
     public function index()
     {
-        try {
+        /**try {
             //code...
             /*$user = Auth::user();
 
             if (!$user) {
                 return response()->json(['error' => 'Usuario no autenticado'], 401);
-            }*/
+            }
 
             $categories = Category::all();
 
             return response()->json(['Categorias'=>$categories], 200,[], JSON_NUMERIC_CHECK);
         } catch (\Throwable $th) {
             return response()->json(['msg' => 'Ocurrio un error al obtener las categorias','error'=>$th], 501);   
-        }
+        } **/
+
+
+        $categories = Category::all();
+        return response()->json ($categories);
+        
     }
 
     /**
