@@ -34,8 +34,8 @@ class FeedController extends Controller
             array_push($data, $f);
         }        
         return response([
-            'feeds' => $data
-        , 200,[],JSON_NUMERIC_CHECK]);
+            'feeds' => $data]
+        , 200,[],JSON_NUMERIC_CHECK);
     }
 
     
