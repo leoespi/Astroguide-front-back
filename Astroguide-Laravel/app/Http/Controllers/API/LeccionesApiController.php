@@ -33,7 +33,7 @@ class LeccionesApiController extends Controller
         $data = array();
         foreach ($lecciones as $l){
             $leccionesusuario = User_has_lecciones::where('lecciones_id', $l->id)
-                ->where('user_id', $user->id)->get();      
+                ->where('user_id', $user->id)->get(); 
             if (count($leccionesusuario) > 0 || $l->id==1) {
                 $l->desbloqueda=true;
             } else {

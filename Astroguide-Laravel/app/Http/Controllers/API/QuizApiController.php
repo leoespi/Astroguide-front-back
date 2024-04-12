@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Quiz; // Importa el modelo Quiz
 use App\Models\QuizLogro; // Importa el modelo Quiz
 use App\Models\Logros;
+use App\Models\UserQuiz;
 use App\Models\User_has_lecciones;
 use App\Models\Lecciones;
 use App\Http\Controllers\Controller;
@@ -31,7 +32,34 @@ class QuizApiController extends Controller
         $logros = DB::table('logro_user')->where('user_id', $user->id)->pluck('logro_id')->all();
         $quizlogros = QuizLogro::whereIn('logro_id', $logros)->pluck('quiz_id')->all();
         $quizs =  Quiz::whereNotIn('id', $quizlogros)->get();
-        return response()->json($quizs, 200);
+        $user_quiz = DB::table("user_haz_quizes")->where('user_id', $user->id)->get();
+        $data = array();
+        $i = 0;
+        if (count($user_quiz) > 0)  {
+            foreach ($quizs as $q) {
+                if (count($user_quiz) > $i) {
+                    if ($user_quiz[$i]!=null && $user_quiz[$i]->bloqueada == false) {
+                        $q->bloqueada = false;
+                    } else {
+                        $q->bloqueada = true;
+                    }
+                } else {
+                    $q->bloqueada = true;
+                }
+                array_push($data, $q);
+               
+                $i++;
+            }
+        } else {
+            foreach ($quizs as $q) {
+                $q->bloqueada = true;
+                array_push($data, $q);
+                $i++;
+            }
+        }
+
+
+        return response()->json($data, 200);
     }
 
     public function store(Request $request)
@@ -59,7 +87,6 @@ class QuizApiController extends Controller
         $quizs->Respuesta10= $request->Respuesta10;
 
         $quizs->logro_id = $request->logro_id;
-        $quizs->bloqueada = true;
         
         $quizs->save();
         return response()->json($quizs, 200);
@@ -89,7 +116,6 @@ class QuizApiController extends Controller
         $quizs->Respuesta8= $request->Respuesta8;
         $quizs->Respuesta9= $request->Respuesta9;
         $quizs->Respuesta10= $request->Respuesta10;
-        $quizs->bloqueada = true;
 
         $quizs->save();
         return response()->json($user);
@@ -112,37 +138,39 @@ class QuizApiController extends Controller
     //esta funcion es para verificar si el usuario contesto correctamente el quiz
     public function validarTerminacion(Request $request)
     {
-    // Traer el id del quiz y la respuesta del usuario
-    $quizId = $request->input('quiz_id');
-    $respuestasClientes = $request->input('respuestas_clientes');
-    // BUSCAR QUIZ
-    $quiz = Quiz::find($quizId);
-    $respuestasCorrectas = [$quiz->RespuestaCorrecta,
-                             $quiz->RespuestaCorrecta2,
-                              $quiz->RespuestaCorrecta3];
-
-    // quiz existe??
-    if (!$quiz) {
-        return response()->json(['error' => 'El quiz no existe'], 404);
-    }
-    $quizTerminadoCorrectamente = false;
-            if($respuestasCorrectas == $respuestasClientes){
-                $quizTerminadoCorrectamente = true;
-        
-    }//si el quiz se termina con exito se le asigna el logro al usuario
-    if ($quizTerminadoCorrectamente) {
-        $logro = Logros::find($quiz->logro_id);
-    $user = Auth::user();
-    $logro->users()->syncWithoutDetaching($user->id);
-    $leccionDesbloqueada = $this->desbloquearleccion();
-    if (!$leccionDesbloqueada) {
-        return response()->json(["message" => true], 200, [], JSON_NUMERIC_CHECK);
-    }
-}  
-    
-    
-    // Retorna el resultado
-    return response()->json(['message' => $quizTerminadoCorrectamente], 200, [], JSON_NUMERIC_CHECK);
+       try {
+         // Traer el id del quiz y la respuesta del usuario
+         $quizId = $request->input('quiz_id');
+         $respuestasClientes = $request->input('respuestas_clientes');
+         // BUSCAR QUIZ
+         $quiz = Quiz::find($quizId);
+         $respuestasCorrectas = [$quiz->RespuestaCorrecta,
+                                 $quiz->RespuestaCorrecta2,
+                                 $quiz->RespuestaCorrecta3];
+ 
+         // quiz existe??
+         if (!$quiz) {
+             return response()->json(['error' => 'El quiz no existe'], 404);
+         }
+         $quizTerminadoCorrectamente = false;
+                 if($respuestasCorrectas == $respuestasClientes){
+                     $quizTerminadoCorrectamente = true;
+             
+         }//si el quiz se termina con exito se le asigna el logro al usuario
+         if ($quizTerminadoCorrectamente) {
+             $logro = Logros::find($quiz->logro_id);
+         $user = Auth::user();
+         $logro->users()->syncWithoutDetaching($user->id);
+         $leccionDesbloqueada = $this->desbloquearleccion();
+         if (!$leccionDesbloqueada) {
+             return response()->json(["message" => "Ultima leccion"], 200, [], JSON_NUMERIC_CHECK);
+         }
+         }  
+         // Retorna el resultado
+         return response()->json(['message' => $quizTerminadoCorrectamente], 200, [], JSON_NUMERIC_CHECK);
+       } catch (\Throwable $th) {
+        return response()->json(['message' => $th->getMessage()], 400, [], JSON_NUMERIC_CHECK);
+       }
     }
 
 
@@ -158,10 +186,8 @@ class QuizApiController extends Controller
         }
         $lecciones = Lecciones::all();
         $ultimaLeccionId = $lecciones[count($lecciones)-1]->id+1;
-        
-        if ($ultimaLeccionId = $id) {
+        if ($ultimaLeccionId == $id) {
             return false;
-            
         } 
 
         $user_has_lecciones = User_has_lecciones::create([
@@ -176,9 +202,12 @@ class QuizApiController extends Controller
     public function desbloquearquiz($id)
     {
         $quiz = Quiz::find($id);
-        $quiz->bloqueada=false;
-        $quiz->save();
-        return response()->json($quiz); 
+        $user_has_lecciones = DB::table("user_haz_quizes")->insert([
+            'user_id' => Auth::user()->id,
+            'quiz_id' => $id,
+            "bloqueada" => false 
+        ]);
+        return response()->json($user_has_lecciones); 
     }
 }
 
