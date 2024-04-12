@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LeccionesService {
-  url='http://127.0.0.1:8000/api/lecciones';
+  url='https://astroguide.api.adsocidm.com/api/lecciones';
   constructor(private http:HttpClient){
 
   }

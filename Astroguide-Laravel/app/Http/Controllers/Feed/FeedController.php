@@ -33,9 +33,9 @@ class FeedController extends Controller
             $f->nombre=$f->user->name;
             array_push($data, $f);
         }        
-        return response(
-            $data
-        , 200,[],JSON_NUMERIC_CHECK);
+        return response([
+            'feeds' => $data
+        , 200,[],JSON_NUMERIC_CHECK]);
     }
 
     

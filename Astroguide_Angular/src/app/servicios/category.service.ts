@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoryService {
-  url='http://127.0.0.1:8000/api/categoria';
+  url='https://astroguide.api.adsocidm.com/api/categoria';
 
 
   constructor(private http:HttpClient) { }

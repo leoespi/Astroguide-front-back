@@ -10,7 +10,7 @@ export class LogrosService {
   loadLecciones(token: any) {
     throw new Error('Method not implemented.');
   }
-  url= "http://127.0.0.1:8000/api/logro"
+  url= "https://astroguide.api.adsocidm.com/api/logro"
 
   constructor(private http: HttpClient) { }
 
