@@ -19,7 +19,7 @@ class FeedController extends Controller
         $feeds = Feed::with('user')->latest()->get();
         return response([
             'feeds' => $feeds
-        ], 200);
+        ], 200,[],JSON_NUMERIC_CHECK);
     }
 
     
@@ -35,23 +35,35 @@ class FeedController extends Controller
         }        
         return response(
             $data
-        , 200);
+        , 200,[],JSON_NUMERIC_CHECK);
     }
 
     
-
-    public function store(PostRequest $request)
+    public function store(Request $request)
     {
-        $request->validated();
-
-        auth()->user()->feeds()->create([
-            'content' => $request->content
-        ]);
-
-        return response([
-            'message' => 'success',
-        ], 201);
+        try {
+             $request->validate([ 
+                'content' => "required",
+                "category_id" => "required"
+            ]); 
+    
+            Feed::create([
+                "content" => $request->content,
+                "category_id" => $request->category_id,
+                "user_id" => $request->user_id
+            ]);
+    
+            return response([
+                'message' => 'success'
+            ], 201);
+        } catch (\Exception $e) {
+            return response([
+                'message' => 'error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
+    
 
 
     public function likePost($feed_id)
@@ -110,7 +122,7 @@ class FeedController extends Controller
 
         return response([
             'comments' => $comments
-        ], 200);
+        ], 200,[],JSON_NUMERIC_CHECK);
     }
 
     public function destroy($id){
