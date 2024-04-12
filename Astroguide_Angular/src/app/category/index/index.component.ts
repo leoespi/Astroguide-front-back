@@ -42,7 +42,7 @@ export class IndexComponent {
       data => {
         console.log(data);
         
-          this.listarCategory = data;
+          this.listarCategory = data['Categorias'];
          
       },
       err => {
