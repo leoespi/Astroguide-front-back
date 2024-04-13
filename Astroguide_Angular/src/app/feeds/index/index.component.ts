@@ -18,7 +18,7 @@ export class IndexComponent {
   listarFeeds: Feeds[] = [];
   token: string | null = null;
   clave: string | null = null;
-  //categoria: Categoria [] = [];
+
 
   constructor(private feedService: FeedsService, private router: Router, private aRouter: ActivatedRoute) {
 
@@ -34,17 +34,16 @@ export class IndexComponent {
 
   cargarFeeds(): void {
     this.feedService.getFeeds(this.token).subscribe(
-      data => {
+      (data: any) => {
         console.log(data);
-        
-          this.listarFeeds = data;
-         
+        this.listarFeeds = data.feeds; // Modificación: Asigna data.feeds en lugar de data
       },
       err => {
         console.log(err);
       }
     );
   }
+  
   
   
 

@@ -14,32 +14,30 @@
 
 
 <div class="scroll-container">
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Contenido</th>
-            <th>User ID </th>
-            <th>Nombre</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Contenido</th>
+                <th>User ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
 
-    <tbody>
-     
-            <tr *ngFor="let feeds of listarFeeds">
-                <td>{{ feeds.id }}</td>
-                <td>{{ feeds.content }}</td>
-                <td>{{feeds.user_id}}</td> 
-                <td>{{feeds.nombre}}</td>
-
-
-
-
-                <td><button type="button" class="btn btn-danger" (click)="eliminarFeeds(feeds.id)">Eliminar</button>
+        <tbody>
+            <!-- Aquí es donde necesitas aplicar el cambio -->
+            <tr *ngFor="let feed of listarFeeds">
+                <td>{{ feed.id }}</td>
+                <td>{{ feed.content }}</td>
+                <td>{{ feed.user_id }}</td>
+                <td>{{ feed.nombre }}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="eliminarFeeds(feed.id)">Eliminar</button>
                 </td>
             </tr>
-      
-    </tbody>
-</table>
+            <!-- Fin del cambio -->
+        </tbody>
+    </table>
 </div>
+

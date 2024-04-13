@@ -12,7 +12,7 @@ export class FeedsService {
   url='https://astroguide.api.adsocidm.com/api/feeds/all';
 
   urldestroy='https://astroguide.api.adsocidm.com/api/feeds';
-  //categoriaUrl = 'http://127.0.0.1:8000/api/categoria/';
+  
   userUrl = 'https://astroguide.api.adsocidm.com/api/user';
 
 
